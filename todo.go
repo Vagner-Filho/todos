@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 )
 
 func main() {
@@ -21,6 +22,9 @@ func main() {
 
 	menu()
 
+	option := get_menu_choosen_option()
+
+	handleOption(option)
 }
 
 var menu_opts = [5]string{
@@ -37,4 +41,26 @@ func menu() {
 	for i := 0; i < len(menu_opts); i++ {
 		fmt.Printf("%v %v\n", i+1, menu_opts[i])
 	}
+}
+
+func get_menu_choosen_option() int {
+
+	reader := bufio.NewReader(os.Stdin)
+	opt, err := reader.ReadString('\n')
+
+	if err != nil {
+		fmt.Println(err.Error())
+		return -1
+	}
+
+	value, err := strconv.Atoi(opt)
+	if err != nil {
+		fmt.Println(err.Error())
+		return -1
+	}
+	return value
+}
+
+func handleOption(opt int) {
+	// TODO: handle options and integrate with db
 }
