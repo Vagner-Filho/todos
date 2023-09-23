@@ -167,7 +167,7 @@ func handleOption(opt int) {
 			fmt.Println(conversion_err.Error())
 			return
 		}
-		todos = slices.Delete(todos, intId, intId)
+		todos = slices.Delete(todos, intId, intId+1)
 	}
 	if opt == 4 {
 		fmt.Println("Insira a busca:")
